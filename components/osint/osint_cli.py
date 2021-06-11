@@ -7,6 +7,7 @@ Osint Commands
 
 import wikipedia
 from PyInquirer import prompt
+import bootsrap.common
 
 class osint_cli():
 
@@ -31,7 +32,9 @@ class osint_cli():
     ]
 
     input = prompt(questions)
+    summary = wikipedia.summary(input['word'])
+    summary = bootsrap.common.invokeAlter('osint', summary)
 
-    print(wikipedia.summary(input['word']) + "\n\n")
+    print(summary + "\n\n")
 
     self.find()

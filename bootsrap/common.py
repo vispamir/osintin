@@ -22,3 +22,10 @@ def loadComponents(extention):
           componentObjects[component] = componentObject()
 
   return componentObjects
+
+def invokeAlter(extention, args):
+  components = loadComponents(extention)
+  for component in components:
+    args = components[component].alter(args)
+
+  return args
