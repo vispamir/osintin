@@ -5,7 +5,7 @@ created on June 01 21 23:00:00
 Osint Commands
 """
 
-import wikipedia
+import components.osint.find
 from PyInquirer import prompt
 import bootsrap.common
 
@@ -32,9 +32,11 @@ class osint_cli():
     ]
 
     input = prompt(questions)
-    summary = wikipedia.summary(input['word'])
-    summary = bootsrap.common.invokeAlter('osint', summary)
+    results = components.osint.find.allocate(input['word'])
 
-    print(summary + "\n\n")
+    separator = "\n\n"
+    print(separator.join(results))
+
+    print("\n-------------------------------------------------------------------------\n\n")
 
     self.find()

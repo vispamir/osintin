@@ -5,7 +5,7 @@ created on June 01 21 23:00:00
 Osint Endpoints
 """
 
-import wikipedia
+import components.osint.find
 
 class osint_rest():
 
@@ -34,5 +34,5 @@ class osint_rest():
   def retrieve(self, request):
     return {
       'status': True,
-      'result': wikipedia.summary(request['word']),
+      'result': components.osint.find.allocate(request['word']),
     }

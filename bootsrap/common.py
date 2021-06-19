@@ -26,6 +26,7 @@ def loadComponents(extention):
 def invokeAlter(extention, args):
   components = loadComponents(extention)
   for component in components:
-    args = components[component].alter(args)
+    if hasattr(components[component], 'alter'):
+      args = components[component].alter(args)
 
   return args
