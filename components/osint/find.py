@@ -7,12 +7,24 @@ Osint Find
 
 import bootsrap.common
 
-def allocate(word):
+def allocate_geo(lat, lng):
   results = []
   components = bootsrap.common.loadComponents('osint')
   for component in components:
-    if hasattr(components[component], 'find'):
-      result = components[component].find(word)
+    if hasattr(components[component], 'geo_find'):
+      result = components[component].geo_find(lat, lng)
+      results.append(result)
+
+  results = bootsrap.common.invokeAlter('osint', results)
+
+  return results
+
+def allocate_word(word):
+  results = []
+  components = bootsrap.common.loadComponents('osint')
+  for component in components:
+    if hasattr(components[component], 'word_find'):
+      result = components[component].word_find(word)
       results.append(result)
 
   results = bootsrap.common.invokeAlter('osint', results)

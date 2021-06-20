@@ -15,24 +15,35 @@ class osint_rest():
   def define(self):
     return [
       {
-        'path': '/osint/find',
+        'path': '/osint/words',
         'method': 'get',
-        'callback': self.find,
+        'callback': self.words,
       },
       {
-        'path': '/osint/find',
+        'path': '/osint/find-word',
         'method': 'post',
-        'callback': self.retrieve,
+        'callback': self.find_word,
+      },
+      {
+        'path': '/osint/find-geo',
+        'method': 'post',
+        'callback': self.find_geo,
       }
     ]
 
-  def find(self):
+  def words(self):
     return {
       'status': False,
     }
 
-  def retrieve(self, request):
+  def find_geo(self, request):
     return {
       'status': True,
-      'result': components.osint.find.allocate(request['word']),
+      'result': components.osint.find.allocate_geo(request['lat'], request['lng']),
+    }
+
+  def find_word(self, request):
+    return {
+      'status': True,
+      'result': components.osint.find.allocate_word(request['word']),
     }

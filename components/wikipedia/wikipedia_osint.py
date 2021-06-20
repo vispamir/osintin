@@ -12,11 +12,16 @@ class wikipedia_osint():
   def __init__(self):
     print("Loaded WikiPedia Osint")
 
-  def find(self, word):
+  def geo_find(self, lat, lng):
+    words = wikipedia.geosearch(35.700, 51.387)
+
+    summaries = []
+    for word in words:
+      summaries.append(word + ': ' + self.word_find(word))
+
+    separator = "\n\n"
+    return separator.join(summaries)
+
+  def word_find(self, word):
     summary = wikipedia.summary(word)
     return summary
-    # links = wikipedia.page(word).links
-    # print(links)
-    
-    # separator = "\n\n"
-    # return separator.join(links)

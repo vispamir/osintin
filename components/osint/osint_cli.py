@@ -17,12 +17,36 @@ class osint_cli():
   def define(self):
     return [
       {
-        'command': 'find',
-        'callback': self.find,
+        'command': 'find.word',
+        'callback': self.find_word,
+      },
+      {
+        'command': 'find.geo',
+        'callback': self.find_geo,
       }
     ]
 
-  def find(self):
+  def find_geo(self):
+    questions = [
+      {
+        'type': 'input',
+        'name': 'latlng',
+        'message': 'Where are you want ? (Lat & Lng of any where : 35.700,51.387)',
+      }
+    ]
+
+    input = prompt(questions)
+    geo = input['latlng'].split(',')
+    results = components.osint.find.allocate_geo(geo[0], geo[1])
+
+    separator = "\n\n"
+    print(separator.join(results))
+
+    print("\n-------------------------------------------------------------------------\n\n")
+
+    self.find_geo()
+
+  def find_word(self):
     questions = [
       {
         'type': 'input',
@@ -32,11 +56,11 @@ class osint_cli():
     ]
 
     input = prompt(questions)
-    results = components.osint.find.allocate(input['word'])
+    results = components.osint.find.allocate_word(input['word'])
 
     separator = "\n\n"
     print(separator.join(results))
 
     print("\n-------------------------------------------------------------------------\n\n")
 
-    self.find()
+    self.find_word()
