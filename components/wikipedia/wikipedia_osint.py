@@ -13,7 +13,7 @@ class wikipedia_osint():
     print("Loaded WikiPedia Osint")
 
   def geo_find(self, lat, lng, asList):
-    words = wikipedia.geosearch(35.700, 51.387)
+    words = wikipedia.geosearch(lat, lng)
 
     summaries = []
     for word in words:
