@@ -13,10 +13,11 @@ def allocate_geo(lat, lng, asList = False):
   for component in components:
     if hasattr(components[component], 'geo_find'):
       result = components[component].geo_find(lat, lng, asList)
-      if hasattr(result, "__len__"):
-        result = bootsrap.common.invokeAlter('osint', result)
+      if (asList):
+        for key, text in enumerate(result):
+          result[key] = bootsrap.common.invokeAlter('osint', text)
       else:
-        result = bootsrap.common.invokeAlter('osint', [result])
+        result = bootsrap.common.invokeAlter('osint', result)
 
       results.append(result)
 
@@ -28,8 +29,8 @@ def allocate_word(word):
   for component in components:
     if hasattr(components[component], 'word_find'):
       result = components[component].word_find(word)
+      result = bootsrap.common.invokeAlter('osint', result)
       results.append(result)
 
-  results = bootsrap.common.invokeAlter('osint', results)
 
   return results

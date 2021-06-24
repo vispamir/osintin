@@ -10,10 +10,9 @@ class filter_word_osint():
   def __init__(self):
     print("Loaded Filter Word")
 
-  def alter(self, texts):
+  def alter(self, text):
     words = ['bastard', 'fuck', 'wanker']
-    for key, text in enumerate(texts):
-      for word in words:
-        texts[key] = text.replace(word, '[...]')
+    for word in words:
+      text = text.replace(word, '[...]')
 
-    return texts
+    return text
