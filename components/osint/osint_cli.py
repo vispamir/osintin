@@ -37,7 +37,7 @@ class osint_cli():
 
     input = prompt(questions)
     geo = input['latlng'].split(',')
-    results = components.osint.find.allocate_geo(geo[0], geo[1])
+    results = components.osint.find.allocate_geo(geo[0], geo[1], False)
 
     separator = "\n\n"
     print(separator.join(results))

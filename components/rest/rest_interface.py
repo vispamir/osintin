@@ -72,7 +72,7 @@ class rest_interface():
 
   def run(self):
       hostName = "localhost"
-      serverPort = 8080
+      serverPort = 7000
       webServer = HTTPServer((hostName, serverPort), RestServer)
       print("Server started http://%s:%s" % (hostName, serverPort))
 
